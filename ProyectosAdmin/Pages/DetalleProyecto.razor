@@ -1,0 +1,75 @@
+﻿@page "/detalle"
+
+<MudPaper Class="rounded-lg mud-alert-text-success pa-3 ma-1 flex-grow-1" Style="background-color:#BDBDBD;" Elevation="1">
+    <div class="d-flex flex-wrap align-center justify-space-between">
+    <h3>Proyecto: Proyecto de Prueba</h3>
+        <div class="d-flex flex-wrap align-center justify-end">
+            <MudIconButton Variant="Variant.Outlined" Icon="@Icons.Material.Filled.Person" Color="Color.Surface" Class="mr-2" />
+            <MudIconButton Variant="Variant.Outlined" Icon="@Icons.Material.Filled.Info" Color="Color.Surface" />
+        </div>
+   </div>
+</MudPaper>
+
+
+
+<MudDropContainer T="DropItem" Items="_items" ItemsSelector="@((item,dropzone) => item.Place == dropzone)" ItemDropped="ItemUpdated" Class="d-flex flex-md-column flex-sm-row flex-grow-1">
+    <ChildContent>
+        <div class="d-flex align-stretch  justify-space-between">
+            <MudDropZone T="DropItem" Identifier="Compost" CanDrop="@((item) => item.Type == ItemType.Compost)" Style="background-color:#7E57C2;" Class="rounded-lg mud-alert-text-success pa-4 ma-4 flex-grow-1">
+                @*<div class="d-flex flex-wrap align-center justify-space-between">*@
+                <MudText Typo="Typo.button" Style="color:white;" Class="ma-2">Pendientes</MudText>
+                    @*<MudFab Color="Color.Secondary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" />*@
+            @*</div>*@
+            </MudDropZone>
+            <MudDropZone T="DropItem" Identifier="Recycle" CanDrop="@((item) => item.Type == ItemType.Recycle)" Style="background-color:#FFCA28;" Class="rounded-lg mud-alert-text-warning pa-4 ma-4 flex-grow-1">
+                <MudText Typo="Typo.button" Style="color:white;" Class="ma-2">En Proceso</MudText>
+            </MudDropZone>
+            <MudDropZone T="DropItem" Identifier="Trash" CanDrop="@((item) => item.Type == ItemType.Trash)" Style="background-color:#66BB6A;" Class="rounded-lg mud-alert-text-info pa-4 ma-4 flex-grow-1">
+                <MudText Typo="Typo.button" Style="color:white;" Class="ma-2">Finalizados</MudText>
+            </MudDropZone>
+        </div>
+        <MudDropZone T="DropItem" Identifier="Street" CanDrop="@((item) => false)" Class="rounded-lg mud-alert-text-normal pa-4 mt-6 mx-4 flex-grow-1 d-flex flex-wrap" />
+    </ChildContent>
+    <ItemRenderer>
+        <MudPaper Elevation="25" Class="pa-4 ma-2">@context.Name</MudPaper>
+    </ItemRenderer>
+</MudDropContainer>
+
+<style>
+    body
+    {
+        background-color: #E0E0E0;
+    }
+</style>
+
+@code {
+    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+    {
+        dropItem.Item.Place = dropItem.DropzoneIdentifier;
+    }
+
+    private List<DropItem> _items = new()
+    {
+        new DropItem(){ Name = "Apple Core", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Banana Peel", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Old Battery", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Pizza Box", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Moldy Bread", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Paper Bag", Type = ItemType.Compost, Place = "Street" },
+        new DropItem(){ Name = "Uranium-235", Type = ItemType.Compost, Place = "Street" },
+    };
+
+    public class DropItem
+    {
+        public string Name { get; set; }
+        public ItemType Type { get; set; }
+        public string Place { get; set; }
+    }
+
+    public enum ItemType
+    {
+        Compost,
+        Recycle,
+        Trash
+    }
+}
