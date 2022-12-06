@@ -1,0 +1,143 @@
+﻿@page "/proyecto"
+@using ProyectosAdmin.DTO;
+
+<MudContainer>
+    <MudPaper Class="rounded-lg mud-alert-text-success pa-3 ma-1 flex-grow-1" Elevation="1">
+        <div class="d-flex flex-wrap align-center justify-space-between">
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" Class="pa-4" Label="Nombre Proyecto" MaxLength="50"></MudTextField>
+                </MudItem>
+                <MudItem xs="12" md="3">
+            <MudSelect T="string" Class="pa-4" Label="Area Destino" AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("FUNDACION")" />
+                <MudSelectItem Value="@("POSGRADO")" />
+                <MudSelectItem Value="@("SAE")" />
+                <MudSelectItem Value="@("ACADEMICA")" />
+                <MudSelectItem Value="@("RRHH")" />
+            </MudSelect>
+
+                </MudItem>
+                <MudItem xs="12" md="3">
+
+            <MudSelect T="string" Class="pa-4" Label="Propietario" AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem Value="@("PROP 1")" />
+                <MudSelectItem Value="@("PROP 2")" />
+                <MudSelectItem Value="@("PROP 3")" />
+                <MudSelectItem Value="@("PROP 4")" />
+                <MudSelectItem Value="@("PROP 5")" />
+            </MudSelect>
+                </MudItem>
+            </MudGrid>
+        </div>
+    </MudPaper>
+
+    <MudPaper Class="rounded-lg mud-alert-text-success pa-3 ma-1 flex-grow-1" Elevation="1">
+        <MudTextField T="string" Label="Descripcion Proyecto" Variant="Variant.Outlined" Lines="10" />
+    </MudPaper>
+
+    <div class="d-flex flex-wrap align-start justify-space-between m-1">
+        <MudPaper Class="rounded-lg mud-alert-text-success pa-1 ma-1 flex-grow-1" Elevation="1">
+            <MudExpansionPanels Class="pa-2">
+                <MudExpansionPanel Class="rounded-lg mud-alert-text-success ma-1 flex-grow-1">
+                    <TitleContent>
+                        <div class="d-flex">
+                            <MudBadge Content="3" Overlap="true" Color="Color.Success">
+                                <MudIcon Icon="@Icons.Material.Filled.PersonAdd"  class="mr-3"></MudIcon>
+                            </MudBadge>                            
+                            <MudText Class="ml-6"><strong>Integrantes</strong></MudText>
+                        </div>
+                    </TitleContent>
+                    <ChildContent>
+                        <MudList>
+                            <MudListSubheader>
+                                <MudButton FullWidth="true" Variant="Variant.Outlined" Size="Size.Small" Color="Color.Primary"
+                                           StartIcon="@Icons.Material.Filled.Settings" IconColor="Color.Primary">Administrar</MudButton>
+                            </MudListSubheader>
+                            <MudListItem>
+                                Guillermo Arroyo
+                            </MudListItem>
+                            <MudListItem>
+                                Anibal Catapano
+                            </MudListItem>
+                            <MudListItem>
+                                Maria Gabriela Martinez
+                            </MudListItem>
+                        </MudList>
+                    </ChildContent>
+                </MudExpansionPanel>
+            </MudExpansionPanels>
+        </MudPaper>
+        <MudPaper Class="d-flex align-self-stretch rounded-lg mud-alert-text-success pa-1 ma-1 flex-grow-1" Elevation="1">
+            <div class="d-flex flex-grow-1 align-start justify-space-between">
+                <MudDatePicker Class="pa-2" Label="Fecha de Inicio Aprox." />
+                <MudDatePicker Class="pa-2" Label="Fecha de Finalizacion Aprox." />
+            </div>            
+        </MudPaper>
+    </div>
+    <MudGrid>
+        <MudItem xs="12" md="12">
+            <MudAlert Class="mt-1 mb-1" NoIcon="true" AlertTextPosition="AlertTextPosition.Center" Variant="Variant.Filled" Severity="Severity.Normal" Dense="true" Elevation="2">Estadisticas del Proyecto</MudAlert>
+            <MudGrid Spacing="0">
+                <MudItem xs="12" md="6">
+                    <MudPaper Elevation="1" Class="d-flex justify-space-between align-self-stretch rounded-lg mud-alert-text-success pa-1 ma-1 flex-grow-1">
+                        <div class="d-flex flex-column align-center justify-center">
+                            Tareas Pendientes
+                            <MudAvatar Color="Color.Dark" Elevation="2" Size="Size.Large">8</MudAvatar>
+                        </div>
+                        <div class="d-flex flex-column align-center justify-center">
+                            Tareas en Proceso <MudAvatar Color="Color.Primary" Elevation="2" Size="Size.Large">4</MudAvatar>
+                        </div>
+                        <div class="d-flex flex-column align-center justify-center">
+                            Tareas Finalizadas <MudAvatar Color="Color.Success" Elevation="2" Size="Size.Large">13</MudAvatar>
+                        </div>                        
+                    </MudPaper>
+                    <MudPaper Elevation="1" Class="d-flex flex-wrap justify-space-between align-self-stretch rounded-lg mud-alert-text-success pa-1 ma-1">
+                        <MudProgressLinear Color="Color.Success" Size="Size.Large" Striped="true" Value="65" Class="my-4">
+                            <MudText Typo="Typo.h5" Color="Color.Dark">
+                                <b>65%</b>
+                            </MudText>
+                        </MudProgressLinear>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudPaper Elevation="1" Class="d-flex justify-space-between align-self-stretch rounded-lg mud-alert-text-success pa-1 ma-1 ">
+                        <div class="d-flex flex-column align-center justify-center">
+                            Total Dias Proyecto
+                            <MudAvatar Color="Color.Primary" Elevation="2" Size="Size.Large">150</MudAvatar>
+                        </div>
+                        <div class="d-flex flex-column align-center justify-center">
+                            Dias Transcurridos <MudAvatar Color="Color.Primary" Elevation="2" Size="Size.Large">75</MudAvatar>
+                        </div>
+                        <div class="d-flex flex-column align-center justify-center">
+                            Porcentaje <MudAvatar Color="Color.Secondary" Elevation="2" Size="Size.Large">50%</MudAvatar>
+                        </div>
+                    </MudPaper>
+                    <MudPaper Elevation="1" Class="d-flex justify-start align-self-stretch rounded-lg mud-alert-text-success pa-1 ma-1 ">
+                        <MudButton Variant="Variant.Filled" Class="ma-2" StartIcon="@Icons.Material.Filled.Dashboard" IconColor="Color.Primary">Ver Tareas</MudButton>
+                        <MudButton Variant="Variant.Filled" Class="ma-2" StartIcon="@Icons.Custom.FileFormats.FilePdf" IconColor="Color.Secondary">Generar Informes</MudButton>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+
+    <div class="d-flex flex-wrap justify-end m-1">
+        <MudPaper Class="d-flex rounded-lg mud-alert-text-success pa-2 ma-1 flex-grow-1 justify-end" Elevation="1">
+            <MudButton Variant="Variant.Filled" Class="ma-2" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Success">Guardar</MudButton>
+            <MudButton Variant="Variant.Filled" Class="ma-2" StartIcon="@Icons.Material.Filled.Cancel" IconColor="Color.Error">Cancelar</MudButton>
+        </MudPaper>
+    </div>
+</MudContainer>
+     
+<style>
+    body {
+        background-color: #90A4AE;
+        font-size:1em;
+    }
+</style>
+
+@code
+{
+    ProyectoDTO model = new();
+}
